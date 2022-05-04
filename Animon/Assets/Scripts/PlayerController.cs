@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody playerRigidbody; // 이동에 사용할 리지드바디 컴포넌트
     public float speed = 8f; // 이동 속력
     private Animator animator;
-    Vector3 look;
+    public int coinSum = 0;
+    
 
     void Start() {
         // 게임 오브젝트에서 Rigidbody 컴포넌트를 찾아 playerRigidbody에 할당
@@ -47,7 +48,17 @@ public class PlayerController : MonoBehaviour {
                 
     }
 
-    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Coin")
+        {
+            coinSum += 1;
+            GameManager gameManager = FindObjectOfType<GameManager>();
+            gameManager.SetCoinText(coinSum);            
+        }
+    }
+
+
     public void Die() {
         // 자신의 게임 오브젝트를 비활성화
         gameObject.SetActive(false);
