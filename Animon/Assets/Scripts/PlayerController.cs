@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviourPun
+{
     private Rigidbody playerRigidbody; // 이동에 사용할 리지드바디 컴포넌트
     public float speed = 8f; // 이동 속력
     private Animator animator;
@@ -17,6 +19,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
+        if (!photonView.IsMine) {
+            return;
+        }
+        
         // 수평과 수직 축 입력 값을 감지하여 저장
         float xInput = Input.GetAxis("Horizontal");
         float zInput = Input.GetAxis("Vertical");
@@ -50,6 +56,9 @@ public class PlayerController : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (!photonView.IsMine) {
+            return;
+        }
         if (collision.gameObject.tag == "Coin")
         {
             coinSum += 1;

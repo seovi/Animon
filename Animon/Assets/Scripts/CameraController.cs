@@ -1,20 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Photon.Pun;
+using Cinemachine;
 
-public class CameraController : MonoBehaviour
+
+public class CameraController : MonoBehaviourPun
 {
-    public GameObject player;
-    public float offsetX;
-    public float offsetY;
-    public float offsetZ;
-
-    void LateUpdate()
+    private void Start()
     {
-        transform.position = new Vector3(
-            player.transform.position.x + offsetX,
-            player.transform.position.y + offsetY,
-            player.transform.position.z + offsetZ
-            );
+        if(photonView.IsMine) {
+            CinemachineVirtualCamera followCam = FindObjectOfType<CinemachineVirtualCamera>();
+            followCam.Follow = transform;
+            followCam.LookAt = transform;
+        }
     }
 }
