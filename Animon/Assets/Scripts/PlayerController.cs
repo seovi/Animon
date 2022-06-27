@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Animon.Const;
 
 public class PlayerController : MonoBehaviourPun
 {
@@ -9,20 +10,20 @@ public class PlayerController : MonoBehaviourPun
     public float speed = 8f; // 이동 속력
     private Animator animator;
     public int coinSum = 0;
+    private int selectedCharacter = 0;
     
 
     void Start() {
         // 게임 오브젝트에서 Rigidbody 컴포넌트를 찾아 playerRigidbody에 할당
         playerRigidbody = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
-
     }
 
     void Update() {
         if (!photonView.IsMine) {
             return;
         }
-        
+
         // 수평과 수직 축 입력 값을 감지하여 저장
         float xInput = Input.GetAxis("Horizontal");
         float zInput = Input.GetAxis("Vertical");
@@ -76,5 +77,13 @@ public class PlayerController : MonoBehaviourPun
         GameManager gameManager = FindObjectOfType<GameManager>();
         // 가져온 GameManager 오브젝트의 EndGame() 메서드 실행
         gameManager.EndGame();
+    }
+
+    public void SelectCharacter(int selectIndex)
+    {
+        //characterPrefab[selectedCharacter].SetActive(false);
+        //selectedCharacter = selectIndex;
+        //characterPrefab[selectedCharacter].SetActive(true);
+        //animator = characterPrefab[selectedCharacter].GetComponent<Animator>();
     }
 }

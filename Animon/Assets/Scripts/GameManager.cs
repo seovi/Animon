@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; // UI 관련 라이브러리
 using UnityEngine.SceneManagement; // 씬 관리 관련 라이브러리
+using Cinemachine;
 
 public class GameManager : MonoBehaviour {
     public GameObject gameoverText; // 게임오버시 활성화 할 텍스트 게임 오브젝트
     public Text coinText;
     public Text recordText; // 최고 기록을 표시할 텍스트 컴포넌트
+    public GameObject cameraCtrl;
 
     private float surviveTime; // 생존 시간
     private bool isGameover; // 게임 오버 상태
@@ -64,5 +66,12 @@ public class GameManager : MonoBehaviour {
 
         // 최고 기록을 recordText 텍스트 컴포넌트를 통해 표시
         recordText.text = "Best Time: " + (int) bestTime;
+    }
+
+    public void SetFollowCam(Transform transform)
+    {
+        CinemachineVirtualCamera followCam = cameraCtrl.GetComponent<CinemachineVirtualCamera>();
+        followCam.Follow = transform;
+        followCam.LookAt = transform;
     }
 }

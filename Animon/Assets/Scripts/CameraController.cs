@@ -1,5 +1,6 @@
 using Photon.Pun;
 using Cinemachine;
+using UnityEngine;
 
 
 public class CameraController : MonoBehaviourPun
@@ -12,4 +13,6 @@ public class CameraController : MonoBehaviourPun
             followCam.LookAt = transform;
         }
     }
+
+    
 }
