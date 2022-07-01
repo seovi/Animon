@@ -8,7 +8,7 @@ public class CoinScript : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(0f, rotationSpeed * Time.deltaTime, 0f);
+        //transform.Rotate(0f, rotationSpeed * Time.deltaTime, 0f);
     }
 
     private void OnCollisionEnter(Collision collision)

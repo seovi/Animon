@@ -595,12 +595,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70183531daf5f1d4491d0c0d4565c0e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinfPrefab: {fileID: 4286075480770937419, guid: 92d18943a85c9fd4e8cf2221bacb2ef0,
+  coinPrefab: {fileID: 2306630129429833899, guid: 4e0a02fb8a37ad94da4ff179a5c665df,
     type: 3}
-  spawnRateMin: 5
-  spawnRateMax: 10
-  spawnMinPos: -99
-  spawnMaxPos: 99
 --- !u!4 &385197207
 Transform:
   m_ObjectHideFlags: 0
@@ -761,7 +757,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.2548618, y: 1}
+    m_SensorSize: {x: 2.1233141, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
