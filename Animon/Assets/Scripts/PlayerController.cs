@@ -6,17 +6,24 @@ using Animon.Const;
 
 public class PlayerController : MonoBehaviourPun
 {
+    private GameManager gameManager;
     private Rigidbody playerRigidbody; // 이동에 사용할 리지드바디 컴포넌트
-    public float speed = 8f; // 이동 속력
     private Animator animator;
-    public int coinSum = 0;
     private int selectedCharacter = 0;
-    
+    private int coinSum = 0;
+    private string userId;
+
+    public float speed = 8f; // 이동 속력    
 
     void Start() {
         // 게임 오브젝트에서 Rigidbody 컴포넌트를 찾아 playerRigidbody에 할당
         playerRigidbody = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
+        userId = PhotonNetwork.LocalPlayer.NickName;
+
+        gameManager = FindObjectOfType<GameManager>();
+        coinSum = gameManager.GetCoinCount(userId);
+        gameManager.SetCoinText(coinSum);
     }
 
     void Update() {
@@ -63,7 +70,7 @@ public class PlayerController : MonoBehaviourPun
         if (collision.gameObject.tag == "Coin")
         {
             coinSum += 1;
-            GameManager gameManager = FindObjectOfType<GameManager>();
+            gameManager.SetCoinCount(userId, coinSum);
             gameManager.SetCoinText(coinSum);            
         }
     }

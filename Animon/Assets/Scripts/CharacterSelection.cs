@@ -67,6 +67,6 @@ public class CharacterSelection : MonoBehaviourPunCallbacks
     {
         Debug.Log("OnJoinedRoom");
 
-        PhotonNetwork.LoadLevel("SampleScene");
+        PhotonNetwork.LoadLevel("SampleScene");        
     }
 }

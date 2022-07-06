@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     public Text coinText;
     public Text recordText; // 최고 기록을 표시할 텍스트 컴포넌트
     public GameObject cameraCtrl;
+    public MySQLData mySQLData;
 
     private float surviveTime; // 생존 시간
     private bool isGameover; // 게임 오버 상태
@@ -18,26 +19,11 @@ public class GameManager : MonoBehaviour {
         // 생존 시간과 게임 오버 상태를 초기화
         surviveTime = 0;
         isGameover = false;
+        mySQLData = new MySQLData();
     }
 
     void Update() {
-        //// 게임 오버가 아닌 동안
-        //if (!isGameover)
-        //{
-        //    // 생존 시간 갱신
-        //    surviveTime += Time.deltaTime;
-        //    // 갱신한 생존 시간을 timeText 텍스트 컴포넌트를 통해 표시
-        //    timeText.text = "Time: " + (int) surviveTime;
-        //}
-        //else
-        //{
-        //    // 게임 오버인 상태에서 키보드 R키를 누른 경우
-        //    if (Input.GetKeyDown(KeyCode.R))
-        //    {
-        //        // SampleScene 씬을 로드
-        //        SceneManager.LoadScene("SampleScene");
-        //    }
-        //}
+       
     }
 
     public void SetCoinText(int coinSum)
@@ -73,5 +59,15 @@ public class GameManager : MonoBehaviour {
         CinemachineVirtualCamera followCam = cameraCtrl.GetComponent<CinemachineVirtualCamera>();
         followCam.Follow = transform;
         followCam.LookAt = transform;
+    }
+
+    public void SetCoinCount(string idName, int coinCount)
+    {
+        mySQLData.SetCoinCount(idName, coinCount);
+    }
+
+    public int GetCoinCount(string idName)
+    {
+        return mySQLData.GetCoinCount(idName);
     }
 }
