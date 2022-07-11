@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Animon.Const;
+using TMPro;
 
 public class PlayerController : MonoBehaviourPun
 {
@@ -13,7 +14,9 @@ public class PlayerController : MonoBehaviourPun
     private int coinSum = 0;
     private string userId;
 
-    public float speed = 8f; // 이동 속력    
+    public float speed = 8f; // 이동 속력
+   
+       
 
     void Start() {
         // 게임 오브젝트에서 Rigidbody 컴포넌트를 찾아 playerRigidbody에 할당
