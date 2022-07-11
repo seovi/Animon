@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Animon.Const;
-using Hashtable = ExitGames.Client.Photon.Hashtable;
+using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
-public class PlayerSpawner : MonoBehaviour
+public class PlayerSpawner : MonoBehaviourPunCallbacks
 {
     public GameObject[] playerPrefab;
     void Start()
@@ -26,6 +27,15 @@ public class PlayerSpawner : MonoBehaviour
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
             gameManager.SetFollowCam(player.GetComponent<Transform>());
+        }
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        if (PhotonNetwork.LocalPlayer.NickName == newPlayer.NickName)
+        {
+            PhotonNetwork.Disconnect();
+            SceneManager.LoadScene("Lobby");
         }
     }
 }
